@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Star from './Star'
 
-function Rating({ setHover, setRating, rating, hover }) {
+function Rating({title}) {
+    const [rating, setRating] = useState()
+    const [hover, setHover] = useState()
+    const feedBackMessage = ["Terrible","Poor","Fair","Good","Excellent"]
     return (
         <div>
-            <h1>Rate your Experience</h1>
+            <h1>{title}</h1>
             <div className="stars">
                 <Star
                     setHover={setHover}
@@ -13,6 +16,9 @@ function Rating({ setHover, setRating, rating, hover }) {
                     hover={hover}
                 />
             </div>
+            <p className="feedback">
+             {feedBackMessage[rating-1]}
+            </p>
         </div>
     )
 }
