@@ -1,6 +1,7 @@
 import { feedBackMessage } from './data/feedBackMessages'
 import { useState } from 'react'
 import Star from './Star'
+import Modal from './Modal'
 
 function Rating({ title }) {
     const [hover, setHover] = useState()
@@ -12,9 +13,9 @@ function Rating({ title }) {
     }
 
     const handleOpenModal = () => {
-        if (rating < 1){
-             window.alert("Please rate us!!")
-             return
+        if (rating < 1) {
+            window.alert("Please rate us!!")
+            return
         }
         setIsModalVisible(!isModalVisible)
     }
@@ -32,15 +33,11 @@ function Rating({ title }) {
             </div>
             <p className="feedback"> {feedBackMessage[rating - 1]} </p>
             <button onClick={handleOpenModal} className="submit-btn">Submit</button>
-            {isModalVisible && (
-                <div className="modal-overlay">
-                    <div className="modal">
-                        <h2>Thank You!</h2>
-                        <p>You rated us {rating} star{rating > 1 ? "s" : ""}</p>
-                        <button onClick={handleCloseModal} className='close-btn'>Close</button>
-                    </div>
-                </div>
-            )}
+            <Modal
+                isOpen={isModalVisible}
+                rating={rating}
+                handleCloseModal={handleCloseModal}
+            />
         </div>
     )
 }
