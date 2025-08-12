@@ -1,0 +1,1 @@
+export const feedBackMessage = ["Terrible","Poor","Fair","Good","Excellent"]
